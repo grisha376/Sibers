@@ -1,0 +1,80 @@
+﻿@model Sibers.Models.Project
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены что хотите удалить его?</h3>
+<div>
+    <h4>Проект</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Наименование проекта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Дата начала проекта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_of_start)
+        </dd>
+
+        <dt>
+            Дата окончания проекта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_of_end)
+        </dd>
+
+        <dt>
+            Приоритет
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prority)
+        </dd>
+
+        <dt>
+            Заказчик
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+        <dt>
+            Руководитель проекта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employees.Name)
+        </dd>
+
+        <dt>
+            Исполнитель
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Executor.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться назад", "Index")
+        </div>
+    }
+</div>

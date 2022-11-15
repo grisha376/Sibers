@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Sibers.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Информация</h2>
+
+<p>
+    @Html.ActionLink("Добавить новый проект", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Найти по названию проекта: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+    <table class="table">
+        <tr>
+            <th>    
+                Наименование проекта
+            </th>
+            <th>
+                @Html.ActionLink("Дата начала проекта", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th>
+                Дата окончания проекта
+            </th>
+            <th>
+                @Html.ActionLink("Приоритет", "Index", new { sortOrder = ViewBag.PrioritySortParm })
+            </th>
+            <th>
+                Заказчик
+            </th>
+            <th>
+                Руководитель проекта
+            </th>
+            <th>
+                Исполнитель
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_of_start)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_of_end)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employees.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Executor.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактирование", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Информация", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Удаление", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -1,0 +1,26 @@
+﻿@model Sibers.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Информация</h2>
+
+<div>
+    <h4>Заказчик</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Наименование заказчика
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактирование", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Вернуться назад", "Index")
+</p>

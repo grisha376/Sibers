@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Sibers.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Информация</h2>
+
+<p>
+    @Html.ActionLink("Добавить новую задачу", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Найти по названию задачи: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            Наименование задачи
+        </th>
+        <th>
+            Комментарий
+        </th>
+        <th>
+            Приоритет
+        </th>
+        <th>
+            Автор задачи
+        </th>
+        <th>
+            Исполнитель
+        </th>
+        <th>
+            Статус задачи
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name_Task)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employees.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employees1.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status_Task.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Информация", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

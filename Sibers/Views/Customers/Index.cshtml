@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Sibers.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Заказчик</h2>
+
+<p>
+    @Html.ActionLink("Добавить нового заказчика", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Наименование заказчика
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Редактирование", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Информация", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удаление", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
